@@ -1,0 +1,9 @@
+[
+    { "id": "book-flight", "endpoint": "http://localhost:4000/airline/book", "compensateEndpoint": "http://localhost:4000/airline/cancel", "dependencies": [], "rateLimitKey": "airline/book" },
+    { "id": "book-hotel", "endpoint": "http://localhost:4000/hotel/book", "compensateEndpoint": "http://localhost:4000/hotel/cancel", "dependencies": [], "rateLimitKey": "hotel/reserve" },
+    { "id": "book-cab", "endpoint": "http://localhost:4000/cab/book", "compensateEndpoint": "http://localhost:4000/cab/cancel", "dependencies": [], "rateLimitKey": "cab/book" },
+    { "id": "process-payment", "endpoint": "http://localhost:4000/bank/charge", "compensateEndpoint": "http://localhost:4000/bank/refund", "dependencies": ["book-flight", "book-hotel", "book-cab"], "rateLimitKey": "bank/charge" },
+    { "id": "notify-airline", "endpoint": "http://localhost:4000/notify/airline", "compensateEndpoint": "http://localhost:4000/notify/airline", "dependencies": ["process-payment"], "rateLimitKey": "airline/notify" },
+    { "id": "notify-hotel", "endpoint": "http://localhost:4000/notify/hotel", "compensateEndpoint": "http://localhost:4000/notify/hotel", "dependencies": ["process-payment"], "rateLimitKey": "hotel/notify" },
+    { "id": "send-itinerary", "endpoint": "http://localhost:4000/notify/itinerary", "compensateEndpoint": "http://localhost:4000/notify/itinerary", "dependencies": ["notify-airline", "notify-hotel"], "rateLimitKey": "email/send" }
+]

@@ -1,0 +1,36 @@
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Node Dependencies
+node_modules/
+
+# Frontend Build Output
+dist/
+dist-ssr/
+build/
+
+# C++ Build Artifacts and Executables
+*.exe
+*.obj
+*.pdb
+*.ilk
+*.idb
+Debug/
+Release/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Documentation/Notes
+system_design_interview_guide.md
+chat_history.md

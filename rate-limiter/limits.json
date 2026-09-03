@@ -1,0 +1,50 @@
+{
+  "airline/book": {
+    "capacity": 300,
+    "refillRate": 300
+  },
+  "hotel/reserve": {
+    "capacity": 300,
+    "refillRate": 300
+  },
+  "cab/book": {
+    "capacity": 300,
+    "refillRate": 300
+  },
+  "bank/charge": {
+    "capacity": 300,
+    "refillRate": 300
+  },
+  "airline/notify": {
+    "capacity": 300,
+    "refillRate": 300
+  },
+  "hotel/notify": {
+    "capacity": 300,
+    "refillRate": 300
+  },
+  "email/send": {
+    "capacity": 300,
+    "refillRate": 300
+  },
+  "airline/cancel": {
+    "capacity": 300,
+    "refillRate": 300
+  },
+  "hotel/cancel": {
+    "capacity": 300,
+    "refillRate": 300
+  },
+  "cab/cancel": {
+    "capacity": 300,
+    "refillRate": 300
+  },
+  "bank/refund": {
+    "capacity": 300,
+    "refillRate": 300
+  },
+  "default": {
+    "capacity": 300,
+    "refillRate": 300
+  }
+}
