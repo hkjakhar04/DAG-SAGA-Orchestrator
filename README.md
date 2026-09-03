@@ -56,7 +56,7 @@ Once all services are running, open your web browser and navigate to **http://lo
 
 You will see the React Flow dashboard where you can monitor the real-time execution of the DAG, track task statuses, and view edge dependencies.
 
-![DAG Workflow Visualization](image-1.png)
+![DAG Workflow Visualization](image.png)
 
 ### Running a Load Test
 To test the resilience of the system and observe how the C++ rate limiter handles backpressure, run the included load test from a new terminal window (while the main services are active):
