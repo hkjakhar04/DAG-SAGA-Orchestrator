@@ -17,7 +17,7 @@ const BASE_BACKOFF_MS = 200;
 
 // Emitter interface to decouple socket.io
 export type StateChangedCallback = (runId: string, state: WorkflowState) => void;
-let onStateChanged: StateChangedCallback = () => {};
+let onStateChanged: StateChangedCallback = () => { };
 
 export const setOnStateChanged = (cb: StateChangedCallback) => {
     onStateChanged = cb;
@@ -55,9 +55,9 @@ const executeTask = async (runId: string, taskDef: TaskDefinition): Promise<void
             task.retries++;
             const is500 = error.response && error.response.status === 500;
             const errorMsg = error.response ? error.response.data.error || 'Server Error' : error.message;
-            
+
             logger.warn(`[Task Failed] ${taskDef.id} in Run ${runId}. Retry ${task.retries}/${MAX_RETRIES}. Error: ${errorMsg}`);
-            
+
             if (task.retries > MAX_RETRIES) {
                 task.status = 'Failed';
                 task.error = errorMsg;
@@ -89,9 +89,9 @@ const compensateTask = async (runId: string, taskDef: TaskDefinition): Promise<v
         task.status = 'Compensated';
     } catch (error: any) {
         logger.error(`[SAGA Rollback Failed] Run ${runId}: Failed to compensate task ${taskDef.id}: ${error.message}`);
-        task.status = 'Compensated'; 
+        task.status = 'Compensated';
     }
-    
+
     notifyState(runId);
 };
 
@@ -118,14 +118,14 @@ export const executeWorkflow = async (runId: string, tasks: TaskDefinition[], ba
         workflow.endTime = Date.now();
         logger.info(`[DAG Engine] Run ${runId} Completed Successfully.`);
         notifyState(runId);
-        
+
     } catch (error: any) {
         logger.error(`[DAG Engine] Run ${runId} Failed. Initiating SAGA Rollback. Reason: ${error.message}`);
         workflow.status = 'Compensating';
         notifyState(runId);
 
         const reversedBatches = [...batches].reverse();
-        
+
         for (let i = 0; i < reversedBatches.length; i++) {
             const batch = reversedBatches[i];
             const promises = batch.map(taskId => {

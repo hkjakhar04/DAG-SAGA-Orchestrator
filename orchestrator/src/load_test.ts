@@ -7,7 +7,7 @@ const apiClient = axios.create({
     httpsAgent: new https.Agent({ keepAlive: true, maxSockets: 500 }),
 });
 
-const TOTAL_WORKFLOWS = 3000;
+const TOTAL_WORKFLOWS = 5000;
 const CONCURRENT_BATCH_SIZE = 100;
 const BATCH_DELAY_MS = 50;
 
@@ -23,9 +23,6 @@ async function runLoadTest() {
     for (let i = 0; i < TOTAL_WORKFLOWS; i++) {
         apiClient.post('http://localhost:3000/api/start').catch(() => {});
         if (i % 1000 === 0) console.log(`Dispatched ${i} / ${TOTAL_WORKFLOWS}`);
-        
-        // Micro-sleep to allow OS TCP Backlog to breathe and accept all connections
-        if (i % 100 === 0) await sleep(20); 
     }
 
     const endTime = Date.now();

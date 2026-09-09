@@ -11,7 +11,7 @@ const App: React.FC = () => {
     const [history, setHistory] = useState<any[]>([]);
 
     useEffect(() => {
-        const newSocket = io('http://localhost:3000');
+        const newSocket = io('http://localhost:3001');
         setSocket(newSocket);
 
         newSocket.on('taskStateChanged', ({ runId, state }) => {
@@ -37,7 +37,7 @@ const App: React.FC = () => {
 
     const fetchHistory = async () => {
         try {
-            const res = await axios.get('http://localhost:3000/api/history');
+            const res = await axios.get('http://localhost:3001/api/history');
             setHistory(res.data.reverse()); // Latest first
         } catch (e) {
             console.error('Failed to fetch history');
