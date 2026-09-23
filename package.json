@@ -6,7 +6,7 @@
   "scripts": {
     "start:mock-api": "tsx mock-api/server.ts",
     "start:orchestrator": "tsx orchestrator/src/server.ts",
-    "start:frontend": "vite frontend",
+    "start:frontend": "vite frontend --host",
     "build:frontend": "vite build frontend",
     "test:load": "tsx orchestrator/src/load_test.ts",
     "start:all": "concurrently \"npm run start:mock-api\" \"npm run start:orchestrator\" \"npm run start:frontend\""

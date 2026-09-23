@@ -1,6 +1,6 @@
 @echo off
 echo Building C++ Rate Limiter...
-g++ -std=c++17 -o RateLimiter.exe main.cpp RateLimiter.cpp -lws2_32
+g++ -std=c++17 -static -static-libgcc -static-libstdc++ -o RateLimiter.exe main.cpp RateLimiter.cpp -lws2_32
 if %errorlevel% neq 0 (
     echo Build failed!
     exit /b %errorlevel%

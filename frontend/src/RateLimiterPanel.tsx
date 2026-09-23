@@ -13,7 +13,7 @@ const RateLimiterPanel: React.FC = () => {
     useEffect(() => {
         const interval = setInterval(async () => {
             try {
-                const res = await axios.get('http://localhost:8080/status');
+                const res = await axios.get(`http://${window.location.hostname}:8080/status`);
                 setStatus(res.data);
             } catch (e) {
                 // Ignore silently, might be down

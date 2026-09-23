@@ -11,7 +11,7 @@ const App: React.FC = () => {
     const [history, setHistory] = useState<any[]>([]);
 
     useEffect(() => {
-        const newSocket = io('http://localhost:3001');
+        const newSocket = io(`http://${window.location.hostname}:3001`);
         setSocket(newSocket);
 
         newSocket.on('taskStateChanged', ({ runId, state }) => {
@@ -37,7 +37,7 @@ const App: React.FC = () => {
 
     const fetchHistory = async () => {
         try {
-            const res = await axios.get('http://localhost:3001/api/history');
+            const res = await axios.get(`http://${window.location.hostname}:3001/api/history`);
             setHistory(res.data.reverse()); // Latest first
         } catch (e) {
             console.error('Failed to fetch history');
@@ -46,7 +46,7 @@ const App: React.FC = () => {
 
     const startWorkflow = async () => {
         try {
-            const res = await axios.post('http://localhost:3000/api/start');
+            const res = await axios.post(`http://${window.location.hostname}:3000/api/start`);
             setActiveRunId(res.data.runId);
             setLiveState(null); // Clear previous state until socket pushes
         } catch (e) {
